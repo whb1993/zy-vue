@@ -90,10 +90,11 @@ export default {
           axios.post('http://localhost:8080/api/user/register', {
             'email': this.form.email,
             'password': this.form.password,
-            'mobile': Number(this.form.phone),
+            'mobile': this.form.phone,
             'name': this.form.username
           })
             .then((response) => {
+              console.log(response);
               this.$message({
                 showClose: true,
                 message: '恭喜你，注册成功，请登录进入平台！',

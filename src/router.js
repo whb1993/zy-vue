@@ -13,6 +13,12 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/dashboard/overview',
+      component: Dashboard,
+      meta: { title: '监控概览' }
+    },
+    {
       path: '/register',
       component: Register,
       meta: { title: '注册' }

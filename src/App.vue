@@ -36,7 +36,7 @@
             <i class="el-icon-bell" style="color: #fff;" />消息
           </el-menu-item>
           <el-menu-item index="/personal">
-            <font-awesome-icon icon="coffee" />sugon
+            <font-awesome-icon :icon="['fas','user']" />sugon
           </el-menu-item>
           <el-menu-item index="9">
             <i class="el-icon-info" style="color: #fff;" />关于
@@ -203,6 +203,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import './style/base.scss';
 #app{
   .el-header{
     padding: 0;
@@ -228,11 +229,6 @@ export default {
     font-size: 12px;
     line-height: 60px;
   }
-}
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #eee;
 }
 .el-form-item .el-form-item__content{
   margin: 0 auto;
