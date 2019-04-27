@@ -44,18 +44,32 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          axios.post('http://localhost:8080/api/authenticate', {
-            'username': this.form.username,
-            'password': this.form.password
-          })
-            .then((response) => {
-              console.log(response);
-              this.$message({
-                showClose: true,
-                message: '恭喜你，登录成功！',
-                type: 'success'
-              });
+          console.log(this.form);
+          this.$store.dispatch('Login', this.form).then(() => {
+            // this.loading = false
+            // this.$router.push({ path: this.redirect || '/' });
+            this.$message({
+              showClose: true,
+              message: '恭喜你，登录成功！',
+              type: 'success'
             });
+          }).catch((err) => {
+            console.log(err);
+            // this.loading = false
+          });
+          // axios.post('http://localhost:8080/api/authenticate', {
+          //   'username': this.form.username,
+          //   'password': this.form.password
+          // })
+          //   .then((response) => {
+          //     console.log(response);
+          //     console.log(response.data['id_token']);
+          //     this.$message({
+          //       showClose: true,
+          //       message: '恭喜你，登录成功！',
+          //       type: 'success'
+          //     });
+          //   });
           // 需要重定向到其他路由
         } else {
           return false;
