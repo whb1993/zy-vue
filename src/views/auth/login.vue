@@ -11,14 +11,16 @@
         <el-button type="primary" @click="onSubmit('form')">
           登录
         </el-button>
-        <el-button @click="resetForm('form')">重置</el-button>
+        <el-button @click="resetForm('form')">
+          重置
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 export default {
   name: 'Login',
   data() {
@@ -42,20 +44,29 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$message({
-            message: '恭喜你，登录成功！',
-            type: 'success'
-          });
-        }else{
+          axios.post('http://localhost:8080/api/authenticate', {
+            'username': this.form.username,
+            'password': this.form.password
+          })
+            .then((response) => {
+              console.log(response);
+              this.$message({
+                showClose: true,
+                message: '恭喜你，登录成功！',
+                type: 'success'
+              });
+            });
+          // 需要重定向到其他路由
+        } else {
           return false;
         }
-      })
-      /*axios.post('', {})
+      });
+      /* axios.post('', {})
         .then((response) => {
           console.log(response);
         });*/
     },
-    resetForm(formName){
+    resetForm(formName) {
       this.$refs[formName].resetFields();
     }
   }

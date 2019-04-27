@@ -83,8 +83,9 @@
         </template>
       </el-table-column>
     </el-table>
-    <div>
+    <div class="page">
       <el-pagination
+        style="margin: 20px auto;"
         :current-page="currentPage4"
         :page-sizes="[100, 200, 300, 400]"
         :page-size="100"
@@ -169,5 +170,8 @@ export default {
 </script>
 
 <style scoped>
-
+.page{
+  display: flex;
+  align-content: center;
+}
 </style>
