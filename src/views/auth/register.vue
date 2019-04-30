@@ -30,6 +30,7 @@
 
 <script>
 import { valPassword } from '../../utils/validate';
+import { register } from '../../api/login.js';
 import axios from 'axios';
 export default {
   name: 'Register',
@@ -87,20 +88,15 @@ export default {
       this.$refs[formName].validate((valid) => {
         // console.log(this.password, this.);
         if (valid) {
-          axios.post('http://localhost:8080/api/user/register', {
-            'email': this.form.email,
-            'password': this.form.password,
-            'mobile': this.form.phone,
-            'name': this.form.username
-          })
-            .then((response) => {
-              console.log(response);
-              this.$message({
-                showClose: true,
-                message: '恭喜你，注册成功，请登录进入平台！',
-                type: 'success'
-              });
+          register(this.form).then((response) => {
+            console.log(response);
+            this.$message({
+              showClose: true,
+              message: '恭喜你，注册成功，请登录进入平台！',
+              type: 'success'
             });
+            this.$router.push({ path: '/login' });
+          });
         } else {
           return false;
         }

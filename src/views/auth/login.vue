@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   name: 'Login',
   data() {
@@ -53,32 +52,15 @@ export default {
               message: '恭喜你，登录成功！',
               type: 'success'
             });
+            this.$router.push({ path: '/' });
           }).catch((err) => {
             console.log(err);
             // this.loading = false
           });
-          // axios.post('http://localhost:8080/api/authenticate', {
-          //   'username': this.form.username,
-          //   'password': this.form.password
-          // })
-          //   .then((response) => {
-          //     console.log(response);
-          //     console.log(response.data['id_token']);
-          //     this.$message({
-          //       showClose: true,
-          //       message: '恭喜你，登录成功！',
-          //       type: 'success'
-          //     });
-          //   });
-          // 需要重定向到其他路由
         } else {
           return false;
         }
       });
-      /* axios.post('', {})
-        .then((response) => {
-          console.log(response);
-        });*/
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
